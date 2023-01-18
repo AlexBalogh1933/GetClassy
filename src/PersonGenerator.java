@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Person
+public class PersonGenerator
 {
     public static void main(String[] args) throws IOException
     {
@@ -18,7 +18,7 @@ public class Person
         boolean doContinue;
         ArrayList<String> PersonList = new ArrayList<>();
 
-        do
+            do
         {
             firstName = SafeInput.getNonZeroLenString(in, "Input first name");
             lastName = SafeInput.getNonZeroLenString(in, "Input last name");
@@ -43,12 +43,11 @@ public class Person
         fileName = SafeInput.getNonZeroLenString(in, "What do you want the file to be called");
         FileWriter writer = new FileWriter(fileName + ".txt");
 
-        for (String i : PersonList)
-        {
-            writer.write(i);
-            writer.write("\n");
-        }
-        writer.close();
+            for (String i : PersonList)
+            {
+                writer.write(i);
+                writer.write("\n");
+            }
+            writer.close();
     }
-
 }
