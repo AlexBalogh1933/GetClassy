@@ -1,54 +1,115 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Calendar;
 
 public class Person
 {
-    public static void main(String[] args) throws IOException
-    {
-        Scanner in = new Scanner(System.in);
-        String firstName;
-        String lastName;
-        String idString;
-        String inputTitle;
-        int yearOfBirth;
-        String yearOfBirthST;
-        String stringPerson;
-        boolean doContinue;
-        ArrayList<String> PersonList = new ArrayList<>();
+    public String firstName;
+    public String lastName;
+    public String idString;
+    public String inputTitle;
+    public int yearOfBirth;
+    static private int IDSeed = 1;
 
-        do
-        {
-            firstName = SafeInput.getNonZeroLenString(in, "Input first name");
-            lastName = SafeInput.getNonZeroLenString(in, "Input last name");
-            idString = SafeInput.getNonZeroLenString(in, "Enter Id");
-            inputTitle = SafeInput.getNonZeroLenString(in, "Input title");
-            yearOfBirth = SafeInput.getRangedInt(in, "Input year of birth",1940,2000);
-
-            yearOfBirthST = Integer.toString(yearOfBirth);
-
-            stringPerson = String.join(", ", firstName, lastName, idString, inputTitle, yearOfBirthST);
-
-            PersonList.add(stringPerson);
-
-            doContinue = SafeInput.getYNConfirm(in, "Do you want to continue");
-
-            System.out.println(PersonList);
-            System.out.println(doContinue);
-
-        } while (doContinue);
-
-        String fileName;
-        fileName = SafeInput.getNonZeroLenString(in, "What do you want the file to be called");
-        FileWriter writer = new FileWriter(fileName + ".txt");
-
-        for (String i : PersonList)
-        {
-            writer.write(i);
-            writer.write("\n");
-        }
-        writer.close();
+    public static void setIDSeed(int IDSeed) {
+        Person.IDSeed = IDSeed;
     }
 
+    public static int getIDSeed() {
+        return IDSeed;
+    }
+
+    public Person(String idString, String firstName, String lastName, String inputTitle, int yearOfBirth)
+    {
+        this.idString = idString;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.inputTitle = inputTitle;
+        this.yearOfBirth = yearOfBirth;
+    }
+    public Person(String firstName, String lastName, int yearOfBirth)
+    {
+        this.idString = this.genidString();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    private String genidString()
+    {
+        String newID = "" + IDSeed;
+        while(newID.length() < 8)
+        {
+            newID = "0" + newID;
+        }
+        IDSeed++;
+        return newID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+
+    public String getIdString()
+    {
+        return idString;
+    }
+
+    public void setIdString(String idString)
+    {
+        this.idString = idString;
+    }
+
+    public String getInputTitle()
+    {
+        return inputTitle;
+    }
+
+    public void setInputTitle(String inputTitle)
+    {
+        this.inputTitle = inputTitle;
+    }
+
+    public int getYearOfBirth()
+    {
+        return yearOfBirth;
+    }
+
+    public void setYearOfBirth(int yearOfBirth)
+    {
+        this.yearOfBirth = yearOfBirth;
+    }
+
+    public String fullName()
+    {
+        return this.firstName + " " + this.lastName;
+    }
+
+    public String formalName()
+    {
+        return this.inputTitle + " " + fullName();
+    }
+
+    public String getAge()
+    {
+        return Integer.toString(Calendar.getInstance().get(Calendar.YEAR) - this.yearOfBirth);
+    }
+
+    public String toCSVRecordMethod()
+    {
+        return this.firstName + ", " + this.lastName + ", " + this.idString + ", " + this.inputTitle + ", " + getAge();
+    }
 }

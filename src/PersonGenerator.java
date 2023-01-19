@@ -13,12 +13,10 @@ public class PersonGenerator
         String idString;
         String inputTitle;
         int yearOfBirth;
-        String yearOfBirthST;
-        String stringPerson;
         boolean doContinue;
-        ArrayList<String> PersonList = new ArrayList<>();
+        ArrayList<Person> PersonList = new ArrayList<>();
 
-            do
+        do
         {
             firstName = SafeInput.getNonZeroLenString(in, "Input first name");
             lastName = SafeInput.getNonZeroLenString(in, "Input last name");
@@ -26,11 +24,9 @@ public class PersonGenerator
             inputTitle = SafeInput.getNonZeroLenString(in, "Input title");
             yearOfBirth = SafeInput.getRangedInt(in, "Input year of birth",1940,2000);
 
-            yearOfBirthST = Integer.toString(yearOfBirth);
+            Person personInput = new Person (firstName, lastName, idString, inputTitle, yearOfBirth);
 
-            stringPerson = String.join(", ", firstName, lastName, idString, inputTitle, yearOfBirthST);
-
-            PersonList.add(stringPerson);
+            PersonList.add(personInput);
 
             doContinue = SafeInput.getYNConfirm(in, "Do you want to continue");
 
@@ -43,11 +39,11 @@ public class PersonGenerator
         fileName = SafeInput.getNonZeroLenString(in, "What do you want the file to be called");
         FileWriter writer = new FileWriter(fileName + ".txt");
 
-            for (String i : PersonList)
-            {
-                writer.write(i);
-                writer.write("\n");
-            }
-            writer.close();
+        for (Person i : PersonList)
+        {
+            writer.write(i.toCSVRecordMethod());
+            writer.write("\n");
+        }
+        writer.close();
     }
 }
