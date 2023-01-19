@@ -9,11 +9,13 @@ public class Person
     public int yearOfBirth;
     static private int IDSeed = 1;
 
-    public static void setIDSeed(int IDSeed) {
+    public static void setIDSeed(int IDSeed)
+    {
         Person.IDSeed = IDSeed;
     }
 
-    public static int getIDSeed() {
+    public static int getIDSeed()
+    {
         return IDSeed;
     }
 
