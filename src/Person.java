@@ -19,11 +19,11 @@ public class Person
         return IDSeed;
     }
 
-    public Person(String idString, String firstName, String lastName, String inputTitle, int yearOfBirth)
+    public Person( String firstName, String lastName, String idString, String inputTitle, int yearOfBirth)
     {
-        this.idString = idString;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.idString = idString;
         this.inputTitle = inputTitle;
         this.yearOfBirth = yearOfBirth;
     }
@@ -112,6 +112,6 @@ public class Person
 
     public String toCSVRecordMethod()
     {
-        return this.firstName + ", " + this.lastName + ", " + this.idString + ", " + this.inputTitle + ", " + getAge();
+        return getFirstName() + ", " + getLastName() + ", " + getIdString() + ", " + getInputTitle() + ", " + getAge() + ", " + getFirstName();
     }
 }

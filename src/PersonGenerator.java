@@ -22,7 +22,7 @@ public class PersonGenerator
             lastName = SafeInput.getNonZeroLenString(in, "Input last name");
             idString = SafeInput.getNonZeroLenString(in, "Enter Id");
             inputTitle = SafeInput.getNonZeroLenString(in, "Input title");
-            yearOfBirth = SafeInput.getRangedInt(in, "Input year of birth",1940,2000);
+            yearOfBirth = SafeInput.getRangedInt(in, "Input year of birth ",1940,2000);
 
             Person personInput = new Person (firstName, lastName, idString, inputTitle, yearOfBirth);
 
