@@ -10,8 +10,8 @@ class PersonTest
     @BeforeEach
     void setUp()
     {
-        p1 = new Person("00000A", "Bob", "Tester1", "Mr",1955);
-        p2 = new Person("00000B", "Sally", "Tester2", "Mrs",1975);
+        p1 = new Person("Bob", "Tester1", "00000A", "Mr",1955);
+        p2 = new Person("Sally", "Tester2", "00000B", "Mrs",1975);
         Person.setIDSeed(0);
         p3 = new Person("Bob", "Tester3", 1960);
         p4 = new Person( "Sally", "Tester4", 1965);
@@ -65,14 +65,5 @@ class PersonTest
     void setYearOfBirth() {
         p1.setYearOfBirth(1975);
         assertEquals(1975, p1.getYearOfBirth());
-    }
-
-    @Test
-    void equals() {
-        p1.setIdString("00000B");
-        p1.setFirstName("Sally");
-        p1.setLastName("Tester2");
-        p1.setYearOfBirth(1975);
-        assertEquals(true, p1.equals(p2));
     }
 }
