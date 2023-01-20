@@ -112,6 +112,6 @@ public class Person
 
     public String toCSVRecordMethod()
     {
-        return getFirstName() + ", " + getLastName() + ", " + getIdString() + ", " + getInputTitle() + ", " + getAge() + ", " + getFirstName();
+        return getFirstName() + ", " + getLastName() + ", " + getIdString() + ", " + getInputTitle() + ", " + getAge();
     }
 }
